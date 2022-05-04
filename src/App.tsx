@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Characters from "./Components/Characters"
+import { QueryClientProvider, QueryClient } from 'react-query'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, NavLink, Nav, NavDropdown } from 'react-bootstrap';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
-function App() {
+const queryClient = new QueryClient()
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    
+    <div>
+      <QueryClientProvider client={queryClient}>
+        <Navbar bg="dark" variant='dark'>
+      <Nav >
+      <NavLink>US</NavLink>
+      <NavLink >CH</NavLink>
+      <NavLink>Men</NavLink>
+      <NavLink>Women</NavLink>
+      </Nav>
 
-export default App;
+      <Nav>
+         <NavDropdown title="Number Displayed" id="navbarScrollingDropdown">
+          <NavDropdown.Item href="#action3">10</NavDropdown.Item>
+          <NavDropdown.Item href="#action4">20</NavDropdown.Item>
+          <NavDropdown.Item href="#action5">30</NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
+    </Navbar>
+      <Router>
+        <Routes>
+          <Route path="/"element={<Characters/>}/>
+          <Route/>
+          <Route/>
+          <Route/>
+          <Route/>
+        </Routes>
+      </Router>
+    
+
+
+    </QueryClientProvider>
+   </div>
+
+
+  )
+}
