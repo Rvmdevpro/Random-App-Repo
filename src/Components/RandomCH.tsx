@@ -17,8 +17,9 @@ export default function RandomUS() {
 
 
 
+
     };
-        const{data,status}= useQuery("people", fetchPeople)
+        const{data,status}= useQuery("CH", fetchPeople)
 
       if (status==="loading"){
         return <div>Loading...</div>
@@ -31,11 +32,30 @@ export default function RandomUS() {
 
       <div>
        {data.results.map((person: RandomUser)=>(
-         <div>{person.name.first}</div>
+         <div>
+           <section>
+           <img src={person.picture.large} alt=""></img>
+           </section>
+           <section>
+           {person.name.title}
+           {person.name.first}
+           {person.name.last}
+           </section>
+           <section>
+           {person.dob.age}
+           </section>
+           <section>
+           {person.cell}
+           </section>
+           <section>
+           {person.email}
+           </section>
+         </div>
        ))}
       </div>
     )
   }
+  
   
   
 
